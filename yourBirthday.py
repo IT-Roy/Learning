@@ -7,6 +7,12 @@
 
 import datetime
 
+def is_leap_year(year):
+    leap_year = False
+    if (year % 100 == 0) or (year % 4 == 0) and (year % 100 != 0):
+        leap_year = True
+    return leap_year
+
 #判断输入日期是一年中的第几天
 def date_processed(date):
     year = date.year
@@ -15,9 +21,8 @@ def date_processed(date):
     days_in_month = (31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31)
     days = sum(days_in_month[: month - 1]) + day
     #判断闰年
-    if (year % 100 == 0) or (year % 4 == 0) and (year % 100 != 0):
-        if month > 2:
-            day += 1
+    if month > 2 and is_leap_year(year):
+        day += 1
     print("this is {} day".format(days))
 
 #主函数
